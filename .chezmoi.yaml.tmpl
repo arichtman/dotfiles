@@ -13,9 +13,9 @@ data:
     gitlab:
       pat: {{ promptString "gitlab pat" }}
     docker:
-      - url: {{ promptString "docker url" }}
+      entry1:
+        url: {{ promptString "docker url" }}
         username: {{ promptString "docker username" }}
         password: {{ promptString "docker password" | quote }}
   pypi:
     url: {{ promptString "pypi index url" }}
-
