@@ -43,6 +43,7 @@ complete -F _awsume awsume
 
 export PIP_INDEX_URL=https://{{ .auth.pypi.username }}:{{ .auth.pypi.password }}@{{ .pypi.url }}
 export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.pat }}
-DOCKER_AUTH_CONFIG=$(<~/.docker/config.json)
+export DOCKER_AUTH_CONFIG=$(<~/.docker/config.json)
+export GITHUB_USERNAME=arichtman
 
 echo "Sourced .profile"
