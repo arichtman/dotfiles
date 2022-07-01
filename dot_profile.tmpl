@@ -1,0 +1,48 @@
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+. ~/.podman_aliases
+export XDG_RUNTIME_DIR=~/.cache
+export EDITOR=nano
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+podman container prune --force
+podman system renumber
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+#AWSume alias to source the AWSume script
+alias awsume="source awsume"
+
+#Auto-Complete function for AWSume
+_awsume() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(awsume-autocomplete)
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+}
+complete -F _awsume awsume
+
+export PIP_INDEX_URL=https://{{ .auth.pypi.username }}:{{ .auth.pypi.password }}@{{ .pypi.url }}
+export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.pat }}
+DOCKER_AUTH_CONFIG=$(<~/.docker/config.json)
+
+echo "Sourced .profile"
