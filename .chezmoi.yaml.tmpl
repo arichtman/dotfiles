@@ -1,0 +1,21 @@
+
+data:
+  user:
+    email: {{ promptString "git username" }}
+    name: {{ promptString "Git Name" | quote }}
+
+  git:
+    autoPush: true
+  auth:
+    pypi:
+      username: {{ promptString "pypi username" }}
+      password: {{ promptString "pypi password }}
+    gitlab:
+      pat: {{ promptString "gitlab pat" }}
+    docker:
+      - url: {{ promptString "docker url" }}
+        username: {{ promptString "docker username" }}
+        password: {{ promptString "docker password" | quote }}
+  pypi:
+    url: {{ promptString "pypi index url" }}
+
