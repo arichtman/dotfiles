@@ -45,5 +45,6 @@ export PIP_INDEX_URL=https://{{ .auth.pypi.username }}:{{ .auth.pypi.password }}
 export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.pat }}
 export DOCKER_AUTH_CONFIG=$(<~/.docker/config.json)
 export GITHUB_USERNAME=arichtman
+export AWS_PAGER=""
 
 echo "Sourced .profile"
