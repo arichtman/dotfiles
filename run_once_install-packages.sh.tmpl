@@ -2,4 +2,9 @@
 #!/bin/sh
 echo "Running Linux package install"
 mkdir -p ~/.docker && ln -s ~/.cache/containers/auth.json ~/.docker/config.json
-{{ end }}
+{{ if eq ( coalesce ( get .chezmoi.osRelease "idLike" ) .chezmoi.osRelease.id ) "debian" -}}
+sudo apt update
+sudo apt upgrade -y
+{{- end }}
+
+{{- end }}
