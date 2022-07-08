@@ -1,0 +1,37 @@
+#!/bin/bash
+# Functions to act as aliases wrapping podman execution of CLI commands in containers
+
+# Export everything so subshells/scripts get 'em
+set -a
+# Think about setting --env-host for all...
+podman-run(){ podman run --rm -it --volume ~:/root --volume .:/root/app --workdir /root/app --network=host $PODMAN_ARGS artifactory-bne.silverrail.io:5001/$@ ; }
+
+dotnet-7(){ podman-run dotnet/sdk:7.0-alpine dotnet $@ ; }
+
+dotnet-6(){ podman-run dotnet/sdk:6.0-alpine dotnet $@ ; }
+
+infracost(){ podman-run infracost/infracost $@ ; }
+
+# This image is much fatter than the Bitnami one, but we require the aws-cli install
+kubectl(){ PODMAN_ARGS='--entrypoint /usr/bin/kubectl' podman-run byub/serverless $@ ; }
+
+# Same missing aws-cli in the alpine/helm image so this one instead
+helm(){ PODMAN_ARGS='--entrypoint /usr/local/bin/helm' podman-run zerg/aws-helm-kubectl $@ ; }
+
+aws(){ PODMAN_ARGS='--env AWS_PROFILE=$AWSUME_PROFILE' podman-run amazon/aws-cli $@ ; }
+
+http(){ podman-run alpine/httpie $@ ; }
+https(){ PODMAN_ARGS='--entrypoint /usr/local/bin/https' podman-run alpine/httpie $@ ; }
+
+packer(){ podman-run hashicorp/packer $@ ; }
+
+jfrog(){ podman run --rm -it --entrypoint /usr/local/bin/jf --volume ~:/root --volume .:/root/app --workdir /root/app --network=host releases-docker.jfrog.io/jfrog/jfrog-cli-v2-jf $@ ; }
+
+docker-lock() { podman-run safewaters/docker-lock lock $@ ; }
+
+alias docker=podman
+
+set +a
+
+echo "Sourced Podman aliases"
+
