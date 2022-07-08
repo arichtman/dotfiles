@@ -1,4 +1,5 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 echo "Running Linux package install"
+mkdir -p ~/.docker && ln -s ~/.cache/containers/auth.json ~/.docker/config.json
 {{ end }}
