@@ -1,0 +1,17 @@
+{{- $authstring := ( list .auth.docker.entry1.username ":" .auth.docker.entry1.password | join "" ) | b64enc  -}}
+{
+        "auths": {
+                {{ .auth.docker.entry1.url | quote }}: {
+                        "auth": {{ $authstring | quote }}
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
