@@ -1,17 +1,8 @@
-{{- $authstring := ( list .auth.docker.entry1.username ":" .auth.docker.entry1.password | join "" ) | b64enc  -}}
+{{- $authstring := ( list .auth.artifactory.username ":" .auth.artifactory.password | join "" ) | b64enc  -}}
 {
         "auths": {
-                {{ .auth.docker.entry1.url | quote }}: {
+                "https://artifactory-bne.silverrail.io:5001": {
                         "auth": {{ $authstring | quote }}
                 }
         }
 }
-
-
-
-
-
-
-
-
-

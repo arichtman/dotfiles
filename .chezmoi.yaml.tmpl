@@ -1,21 +1,11 @@
 
-data:
-  user:
-    email: {{ promptString "git username" }}
-    name: {{ promptString "git Name" | quote }}
+git:
+  autoPush: true
 
-  git:
-    autoPush: true
+data:
   auth:
-    pypi:
-      username: {{ promptString "pypi username" }}
-      password: {{ promptString "pypi password" }}
     gitlab:
       pat: {{ promptString "gitlab pat" }}
-    docker:
-      entry1:
-        url: {{ promptString "docker url" }}
-        username: {{ promptString "docker username" }}
-        password: {{ promptString "docker password" | quote }}
-  pypi:
-    url: {{ promptString "pypi index url" }}
+    artifactory:
+      username: {{ promptString "Artifactory username" }}
+      password: {{ promptString "Artifactory API token" }}

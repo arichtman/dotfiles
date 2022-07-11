@@ -1,0 +1,17 @@
+[default]
+cli_pager=
+[profile nonprod]
+region = ap-southeast-2
+output = yaml
+[profile iptis]
+region = eu-west-1
+output = yaml
+[profile seek]
+output = yaml
+region = eu-west-2
+[profile tcs-np]
+region = eu-west-1
+output = yaml
+[profile tcs-prod]
+region = eu-west-1
+output = yaml
