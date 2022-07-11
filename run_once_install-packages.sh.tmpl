@@ -14,9 +14,9 @@ ln --force --symbolic $HOME/.gitignore $HOME/.cvsignore
 
 # Configure work repository, remote depending on distro
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
-sudo apt-add-repository --yes "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Ubuntu-Virtual $(lsb_release -sc) main"
+sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Ubuntu-Virtual $(lsb_release -sc) main"
 {{ else -}}
-sudo apt-add-repository --yes "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Debian-Virtual $(lsb_release -sc) main"
+sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Debian-Virtual $(lsb_release -sc) main"
 {{ end -}}
 ln --force --symbolic $HOME/.config/apt/auth.conf
 
