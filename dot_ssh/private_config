@@ -1,0 +1,22 @@
+Host vpn
+    HostName remote.silverrail.io
+    IdentityFile ~/.ssh/AWS-DevTest.pem
+    User ubuntu
+
+Host *
+    ServerAliveInterval 240
+    IdentityFile ~/.ssh/main-laptop
+
+Host gitlab
+    HostName gitlab.com
+
+Host gl
+    HostName gitlab-bne.silverrail.io
+    IdentityFile ~/.ssh/gitlab-prod
+    User ubuntu
+
+
+Host artifactory
+    HostName artifactory-bne.silverrail.io
+    IdentityFile ~/.ssh/AWS-DevTest.pem
+    User ubuntu
