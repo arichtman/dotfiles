@@ -4,13 +4,21 @@
 echo "Running Linux package install"
 
 # Allow docker to use podman's auth file
-mkdir -p ~/.docker && ln --force --symbolic ~/.cache/containers/auth.json ~/.docker/config.json
+mkdir -p $HOME/.docker && ln --force --symbolic $HOME/.cache/containers/auth.json $HOME/.docker/config.json
 
 # Symlink so rsync etc can benefit from user's gitignore
 ln --force --symbolic $HOME/.gitignore $HOME/.cvsignore
 
 # Debian family install
 {{ if eq ( coalesce ( get .chezmoi.osRelease "idLike" ) .chezmoi.osRelease.id ) "debian" -}}
+# Configure work repository
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+sudo apt-add-repository "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Ubuntu-Virtual $(lsb_release -sc) main"
+{{ else -}}
+sudo apt-add-repository "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Debian-Virtual $(lsb_release -sc) main"
+{{ end -}}
+ln --force --symbolic $HOME/.config/apt/auth.conf
+
 sudo apt update
 sudo apt upgrade -y
 
