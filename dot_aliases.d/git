@@ -1,0 +1,1 @@
+alias fuggit='git commit --all --no-edit --amend && git push --force'
