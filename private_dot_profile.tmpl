@@ -27,5 +27,7 @@ export PIP_INDEX_URL=https://{{ .auth.artifactory.username }}:{{ .auth.artifacto
 export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.pat }}
 export DOCKER_AUTH_CONFIG=$(cat ~/.docker/config.json | tr --complement --delete [:graph:])
 export GITHUB_USERNAME=arichtman
+export ARTIFACTORY_USERNAME={{ .auth.artifactory.username | quote }}
+export ARTIFACTORY_PASSWORD={{ .auth.artifactory.password | quote }}
 
 echo "Sourced .profile"
