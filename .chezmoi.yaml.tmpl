@@ -9,6 +9,8 @@ data:
     artifactory:
       username: {{ promptString "Artifactory username" }}
       password: {{ promptString "Artifactory API token" }}
+    pypi:
+      token: {{ promptString "PyPi token" }}
     testpypi:
       token: {{ promptString "Test PyPi token" }}
 
