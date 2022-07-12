@@ -1,0 +1,7 @@
+[pypi-token]
+testpypi = {{ .auth.testpypi.token | quote }}
+
+[http-basic]
+[http-basic.artifactory]
+username = "{{ .auth.artifactory.username }}"
+password = "{{ .auth.artifactory.password }}"
