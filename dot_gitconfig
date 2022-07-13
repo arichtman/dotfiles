@@ -10,3 +10,5 @@
 	autocorrect = 15
 [credential]
 	helper = store
+[push]
+	autoSetupRemote = true
