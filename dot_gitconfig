@@ -12,3 +12,5 @@
 	helper = store
 [push]
 	autoSetupRemote = true
+        default = current
+
