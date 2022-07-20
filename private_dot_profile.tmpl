@@ -17,7 +17,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-. ~/.aliases.d/*
+run-parts ~/.aliases.d
 
 #export XDG_RUNTIME_DIR=~/.cache
 export EDITOR=nano
