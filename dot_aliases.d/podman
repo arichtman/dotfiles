@@ -29,6 +29,10 @@ jfrog(){ podman run --rm -it --entrypoint /usr/local/bin/jf --volume ~:/root --v
 
 docker-lock() { podman-run safewaters/docker-lock lock $@ ; }
 
+buildah() { PODMAN_ARGS='--volume /home/arichtman/.local/share/containers/storage:/var/lib/containers/storage/' podman-run buildah/stable:latest /usr/bin/buildah $@ ; }
+
+trivy() { podman-run aquasec/trivy:latest $@ ; }
+
 alias docker=podman
 
 set +a
