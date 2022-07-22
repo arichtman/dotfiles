@@ -20,3 +20,9 @@ Host artifactory
     HostName artifactory-bne.silverrail.io
     IdentityFile ~/.ssh/AWS-DevTest.pem
     User ubuntu
+
+Host bamboo
+    HostName bamboo.silverrailtech.net
+    IdentityFile ~/.ssh/AWS-DevTest.pem
+    User ubuntu
+
