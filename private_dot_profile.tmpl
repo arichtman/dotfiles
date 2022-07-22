@@ -18,7 +18,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 run-parts ~/.aliases.d
-. ~/.aliases.d/* 
+find ~/.aliases.d -type f -exec source {} \; 
 
 #export XDG_RUNTIME_DIR=~/.cache
 export EDITOR=nano
