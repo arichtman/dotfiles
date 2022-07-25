@@ -29,7 +29,7 @@ jfrog(){ podman run --rm -it --entrypoint /usr/local/bin/jf --volume ~:/root --v
 
 docker-lock() { podman-run safewaters/docker-lock lock $@ ; }
 
-buildah() { PODMAN_ARGS='--volume /home/arichtman/.local/share/containers/storage:/var/lib/containers/storage/' podman-run buildah/stable:latest /usr/bin/buildah $@ ; }
+buildah() { PODMAN_ARGS='--volume /home/arichtman/.local/share/containers/storage:/var/lib/containers/storage/ --env REGISTRY_AUTH_FILE=/root/.cache/containers/auth.json' podman-run buildah/stable:latest /usr/bin/buildah $@ ; }
 
 trivy() { podman-run aquasec/trivy:latest $@ ; }
 
