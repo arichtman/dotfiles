@@ -25,7 +25,7 @@ sudo apt upgrade --yes
 
 # Jammy install podman from out-the-box repositories
 {{ if eq ( coalesce ( get .chezmoi.osRelease "ubuntuCodename" ) .chezmoi.osRelease.versionCodename ) "jammy" -}}
-sudo apt install -y podman
+sudo apt install -y podman buildah
 {{- end }}
 
 # Focal add repository and install podman
@@ -33,7 +33,7 @@ sudo apt install -y podman
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_$(lsb_release -rs)/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_$(lsb_release -rs)/Release.key" | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install -y podman
+sudo apt-get install -y podman buildah
 
 {{- end }}
 {{- end }}
