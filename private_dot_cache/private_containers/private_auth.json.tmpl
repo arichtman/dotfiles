@@ -1,7 +1,11 @@
 {{- $authstring := ( list .auth.artifactory.username ":" .auth.artifactory.password | join "" ) | b64enc  -}}
 {
         "auths": {
-                "https://artifactory-bne.silverrail.io:5001": {
+                "artifactory-bne.silverrail.io:5001": {
+                        "auth": {{ $authstring | quote }}
+                },
+                {
+                "artifactory-bne.silverrail.io:5002": {
                         "auth": {{ $authstring | quote }}
                 }
         }
