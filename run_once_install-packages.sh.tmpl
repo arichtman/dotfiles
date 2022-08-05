@@ -6,6 +6,7 @@ echo "Running Linux package install"
 # Allow docker to use podman's auth file
 mkdir -p $HOME/.docker && ln --force --symbolic $HOME/.cache/containers/auth.json $HOME/.docker/config.json
 
+mkdir -p $HOME/.nuget
 # Symlink so rsync etc can benefit from user's gitignore
 ln --force --symbolic $HOME/.gitignore $HOME/.cvsignore
 
