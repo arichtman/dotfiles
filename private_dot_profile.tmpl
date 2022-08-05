@@ -17,9 +17,12 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-alias source=.
 run-parts ~/.aliases.d
-find ~/.aliases.d -type f -exec source {} \; 
+# find refuses to use source alias and can't run .
+#alias source=.
+#find ~/.aliases.d -type f -exec source {} \; 
+. ~/.aliases.d/podman
+. ~/.aliases.d/git
 
 export XDG_RUNTIME_DIR=~/.cache
 export EDITOR=nano
