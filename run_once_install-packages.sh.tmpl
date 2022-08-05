@@ -18,7 +18,7 @@ sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory
 {{ else -}}
 sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Debian-Virtual $(lsb_release -sc) main"
 {{ end -}}
-ln --force --symbolic $HOME/.config/apt/auth.conf
+sudo ln --force --symbolic $HOME/.config/apt/auth.conf /etc/apt/
 
 sudo apt update
 sudo apt upgrade --yes
