@@ -20,12 +20,12 @@ fi
 run-parts ~/.aliases.d
 find ~/.aliases.d -type f -exec source {} \; 
 
-#export XDG_RUNTIME_DIR=~/.cache
+export XDG_RUNTIME_DIR=~/.cache
 export EDITOR=nano
 export AWS_PAGER=""
 
 export PIP_INDEX_URL=https://{{ .auth.artifactory.username }}:{{ .auth.artifactory.password }}@artifactory-bne.silverrail.io/artifactory/api/pypi/python-srt-virtual/simple
-export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.pat }}
+export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.password }}
 export DOCKER_AUTH_CONFIG=$(cat ~/.docker/config.json | tr --complement --delete [:graph:])
 export GITHUB_USERNAME=arichtman
 export ARTIFACTORY_USERNAME={{ .auth.artifactory.username | quote }}

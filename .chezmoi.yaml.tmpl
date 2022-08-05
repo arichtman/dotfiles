@@ -5,10 +5,14 @@ git:
 data:
   auth:
     gitlab:
-      pat: {{ promptString "gitlab pat" }}
+      username: {{ promptString "GitLab username" }}
+      password : {{ promptString "GitLab PAT" }}
     artifactory:
       username: {{ promptString "Artifactory username" }}
       password: {{ promptString "Artifactory API token" }}
+    docker:
+      username: {{ promptString "Docker.io username" }}
+      password: {{ promptString "Docker.io access token" }}
     pypi:
       token: {{ promptString "PyPi token" }}
     testpypi:

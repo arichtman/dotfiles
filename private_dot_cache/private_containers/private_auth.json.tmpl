@@ -1,12 +1,19 @@
-{{- $authstring := ( list .auth.artifactory.username ":" .auth.artifactory.password | join "" ) | b64enc  -}}
+{{- $artifactoryAuthstring := ( list .auth.artifactory.username ":" .auth.artifactory.password | join "" ) | b64enc  -}}
+{{- $gitlabAuthstring := ( list .auth.gitlab.username ":" .auth.gitlab.password | join "" ) | b64enc  -}}
+{{- $dockerAuthstring := ( list .auth.docker.username ":" .auth.docker.password | join "" ) | b64enc  -}}
 {
         "auths": {
                 "artifactory-bne.silverrail.io:5001": {
-                        "auth": {{ $authstring | quote }}
+                        "auth": {{ $artifactoryAuthstring | quote }}
                 },
-                {
                 "artifactory-bne.silverrail.io:5002": {
-                        "auth": {{ $authstring | quote }}
+                        "auth": {{ $artifactoryAuthstring | quote }}
+                },
+                "registry-bne.silverrail.io": {
+                        "auth": {{ $gitlabAuthstring | quote }}
+                },
+                "docker.io": {
+                        "auth": {{ $dockerAuthstring | quote }}
                 }
         }
 }
