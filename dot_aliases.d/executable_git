@@ -1,3 +1,7 @@
 #!/bin/bash
 
 alias fuggit='git commit --all --no-edit --amend && git push --force'
+
+
+(return 0 2>/dev/null) && echo "Sourced git aliases" || echo "Ran git aliases"
+

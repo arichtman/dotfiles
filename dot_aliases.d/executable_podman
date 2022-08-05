@@ -37,5 +37,6 @@ alias docker=podman
 
 set +a
 
-echo "Sourced Podman aliases"
+(return 0 2>/dev/null) && echo "Sourced podman aliases" || echo "Ran podman aliases"
+
 
