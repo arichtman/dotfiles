@@ -17,6 +17,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+alias source=.
 run-parts ~/.aliases.d
 find ~/.aliases.d -type f -exec source {} \; 
 
