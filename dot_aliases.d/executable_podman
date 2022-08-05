@@ -18,7 +18,7 @@ kubectl(){ PODMAN_ARGS='--entrypoint /usr/bin/kubectl' podman-run byub/serverles
 # Same missing aws-cli in the alpine/helm image so this one instead
 helm(){ PODMAN_ARGS='--entrypoint /usr/local/bin/helm' podman-run zerg/aws-helm-kubectl $@ ; }
 
-aws(){ PODMAN_ARGS='--env AWS_PROFILE=$AWSUME_PROFILE' podman-run amazon/aws-cli $@ ; }
+aws(){ PODMAN_ARGS="--env AWS_PROFILE=${AWSUME_PROFILE}" podman-run amazon/aws-cli $@ ; }
 
 http(){ podman-run alpine/httpie $@ ; }
 https(){ PODMAN_ARGS='--entrypoint /usr/local/bin/https' podman-run alpine/httpie $@ ; }
