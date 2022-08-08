@@ -1,0 +1,15 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget-srt-virtual" value="https://artifactory-bne.silverrail.io/artifactory/api/nuget/nuget-srt-virtual" />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
+  </packageSources>
+  <packageSourceCredentials>
+    <nuget-srt-virtual>
+        <add key="Username" value={{ .auth.artifactory.username | quote }} />
+        <add key="ClearTextPassword" value={{ .auth.artifactory.password | quote }} />
+      </nuget-srt-virtual>
+  </packageSourceCredentials>
+</configuration>
+
