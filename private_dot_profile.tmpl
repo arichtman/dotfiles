@@ -25,10 +25,10 @@ export EDITOR=nano
 export AWS_PAGER=""
 
 export PIP_INDEX_URL=https://{{ .auth.artifactory.username }}:{{ .auth.artifactory.password }}@artifactory-bne.silverrail.io/artifactory/api/pypi/python-srt-virtual/simple
-export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.password }}
+export GITLAB_PRIVATE_TOKEN={{ .auth.gitlab.token }}
 export DOCKER_AUTH_CONFIG=$(cat ~/.docker/config.json | tr --complement --delete [:graph:])
-export GITHUB_USERNAME=arichtman
 export ARTIFACTORY_USERNAME={{ .auth.artifactory.username | quote }}
 export ARTIFACTORY_PASSWORD={{ .auth.artifactory.password | quote }}
+export BUNDLE_ARTIFACTORY___BNE__SILVERRAIL__IO="{{ .auth.artifactory.username }}:{{ .auth.artifactory.password }}"
 
 echo "Sourced .profile"

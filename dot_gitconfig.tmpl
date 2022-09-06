@@ -1,11 +1,11 @@
 [user]
-	name = Richtman, Ariel
-	email = ariel.richtman@silverrailtech.com
+	name = {{ .fullname | quote }}
+	email = {{ list .auth.gitlab.username "@silverrailtech.com" | quote }}
 [rerere]
 	enabled = true
 [core]
 	autocrlf = input
-        excludesfile = $HOME/.gitignore
+	excludesfile = $HOME/.gitignore
 [help]
 	autocorrect = 15
 [credential]

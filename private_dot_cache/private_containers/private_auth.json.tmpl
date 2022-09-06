@@ -1,5 +1,5 @@
 {{- $artifactoryAuthstring := ( list .auth.artifactory.username ":" .auth.artifactory.password | join "" ) | b64enc  -}}
-{{- $gitlabAuthstring := ( list .auth.gitlab.username ":" .auth.gitlab.password | join "" ) | b64enc  -}}
+{{- $gitlabAuthstring := ( list .auth.gitlab.username ":" .auth.gitlab.token | join "" ) | b64enc  -}}
 {{- $dockerAuthstring := ( list .auth.docker.username ":" .auth.docker.password | join "" ) | b64enc  -}}
 {
         "auths": {

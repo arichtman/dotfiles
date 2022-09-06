@@ -3,10 +3,11 @@ git:
   autoPush: true
 
 data:
+  fullname: {{ promptString "Full name" }}
   auth:
     gitlab:
       username: {{ promptString "GitLab username" }}
-      password : {{ promptString "GitLab PAT" }}
+      token : {{ promptString "GitLab PAT" }}
     artifactory:
       username: {{ promptString "Artifactory username" }}
       password: {{ promptString "Artifactory API token" }}
