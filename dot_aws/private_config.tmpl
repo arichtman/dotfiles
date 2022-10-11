@@ -15,3 +15,8 @@ output = yaml
 [profile tcs-prod]
 region = eu-west-1
 output = yaml
+[profile protected]
+region = ap-southeast-2
+source_profile = nonprod
+role_arn = arn:aws:iam::519990849220:role/ExternalAdministrator
+role_session_name = {{ .auth.artifactory.username }}
