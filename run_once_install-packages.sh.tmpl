@@ -1,7 +1,24 @@
 {{ if eq .chezmoi.os "linux" -}}
 
 #!/bin/sh
-echo "Running Linux package install"
+echo "Running Linux configuration"
+
+{{- if eq .chezmoi.osRelease.id "nixos" -}}
+echo "Determined NixOS distribution"
+# Remove any existing channels
+nix-channel --list | cut -d ' ' -f 1 | xargs -I % nix-channel --remove %
+# Add ours, check and update
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+nix-channel --add https://nixos.org/channels/nixos-22.05 nixpkgs
+echo "Installed channels:"
+nix-channel --list
+nix-channel --update
+
+echo "Installing packages"
+nix-env --upgrade
+nix-env --install --attr nixpkgs.git
+
+{{- end -}}
 
 # Allow docker to use podman's auth file
 mkdir -p $HOME/.docker && ln --force --symbolic $HOME/.cache/containers/auth.json $HOME/.docker/config.json
@@ -11,9 +28,10 @@ ln --force --symbolic $HOME/.gitignore $HOME/.cvsignore
 
 # Debian family install
 {{ if eq ( coalesce ( get .chezmoi.osRelease "idLike" ) .chezmoi.osRelease.id ) "debian" -}}
-
+echo "Determined Debian-based distribution"
 # Configure work repository, remote depending on distro
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+echo "Determined Ubuntu distribution"
 sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Ubuntu-Virtual $(lsb_release -sc) main"
 {{ else -}}
 sudo apt-add-repository --yes --no-update "deb [trusted=yes] https://artifactory-bne.silverrail.io/artifactory/Debian-Virtual $(lsb_release -sc) main"
@@ -25,11 +43,13 @@ sudo apt upgrade --yes
 
 # Jammy install podman from out-the-box repositories
 {{ if eq ( coalesce ( get .chezmoi.osRelease "ubuntuCodename" ) .chezmoi.osRelease.versionCodename ) "jammy" -}}
+echo "Determined jammy release"
 sudo apt install -y podman buildah
 {{- end }}
 
 # Focal add repository and install podman
 {{ if eq ( coalesce ( get .chezmoi.osRelease "ubuntuCodename" ) .chezmoi.osRelease.versionCodename ) "focal" -}}
+echo "Determined focal release"
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_$(lsb_release -rs)/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_$(lsb_release -rs)/Release.key" | sudo apt-key add -
 sudo apt-get update
