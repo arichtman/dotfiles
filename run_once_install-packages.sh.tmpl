@@ -3,7 +3,8 @@
 #!/bin/sh
 echo "Running Linux configuration"
 
-{{- if eq .chezmoi.osRelease.id "nixos" -}}
+{{ if eq .chezmoi.osRelease.id "nixos" }}
+
 echo "Determined NixOS distribution"
 # Remove any existing channels
 nix-channel --list | cut -d ' ' -f 1 | xargs -I % nix-channel --remove %
@@ -18,7 +19,7 @@ echo "Installing packages"
 nix-env --upgrade
 nix-env --install --attr nixpkgs.git
 
-{{- end -}}
+{{ end }}
 
 # Allow docker to use podman's auth file
 mkdir -p $HOME/.docker && ln --force --symbolic $HOME/.cache/containers/auth.json $HOME/.docker/config.json
