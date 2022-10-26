@@ -5,6 +5,10 @@ git:
 data:
   fullname: {{ promptString "Full name" }}
   auth:
+    github:
+      token: {{ promptString "GitHub PAT" }}
+    bamboo:
+      token: {{ promptString "Bamboo PAT" }}
     gitlab:
       username: {{ promptString "GitLab username" }}
       token : {{ promptString "GitLab PAT" }}

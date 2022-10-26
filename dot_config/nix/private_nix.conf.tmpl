@@ -1,0 +1,4 @@
+experimental-features = nix-command flakes
+keep-outputs = true       # Nice for developers
+keep-derivations = true   # Idem
+access-tokens = github.com={{ .auth.github.token }} gitlab-bne.silverrail.io=PAT:{{ .auth.gitlab.token }} bamboo.silverrailtech.net=PAT:{{ .auth.bamboo.token }} artifactory-bne.silverrail.io=PAT:{{ .auth.artifactory.password }}
